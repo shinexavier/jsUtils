@@ -26,10 +26,10 @@ SOFTWARE.-->
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
-<title>'Apply-Eval'-based Curry Approach</title>
+<title>Currying Benchmarks</title>
 
 <script type="text/javascript" src="JSLitmus.js"></script>
-<script type="text/javascript" src="ApplyEvalCurry.js"></script>
+<script type="text/javascript" src="EvalApplyCurry.js"></script>
 <script type="text/javascript">
 
 // Test how much overhead there is in invoking a function
@@ -46,47 +46,47 @@ var testAdder1 = function () {
 		multiplier2(1, 2, 3);
 	};
 	
-JSLitmus.test('Crockford Curry overhead (non-looping) : Add', function() {
+JSLitmus.test('Add - Crockford Curry (non-looping)', function() {
   testAdder1();
 });
 
-JSLitmus.test('Haskell Curry overhead (non-looping) : Add', function() {
+JSLitmus.test('Add - Haskell Curry (non-looping)', function() {
   testAdder2();
 });
 
-JSLitmus.test('Crockford Curry overhead (looping) : Add', function(count) {
+JSLitmus.test('Add - Crockford Curry (looping)', function(count) {
   var f = testAdder1;
   while (count--) f();
 });
 
-JSLitmus.test('Haskell Curry overhead (looping) : Add', function(count) {
+ JSLitmus.test('Add - Haskell Curry (looping)', function(count) {
   var f = testAdder2;
   while (count--) f();
 });
 
-JSLitmus.test('Crockford Curry overhead (non-looping) : Multiply', function() {
+JSLitmus.test('Multiply - Crockford Curry (non-looping)', function() {
   testMultiplier1();
 });
 
-JSLitmus.test('Haskell Curry overhead (non-looping) : Multiply', function() {
+JSLitmus.test('Multiply - Haskell Curry (non-looping)', function() {
   testMultiplier2();
 });
 
-JSLitmus.test('Crockford Curry overhead (looping) : Multiply', function(count) {
+JSLitmus.test('Multiply - Crockford Curry (looping)', function(count) {
   var f = testMultiplier1;
   while (count--) f();
 });
 
-JSLitmus.test('Haskell Curry overhead (looping) : Multiply', function(count) {
+JSLitmus.test('Multiply - Haskell Curry (looping)', function(count) {
   var f = testMultiplier2;
   while (count--) f();
-});
+})
 
 </script>
 </head>
 
 <body>
-  <p>Apply-Eval Currying Benchmarks.</p>
+  <p>Eval-Apply Currying Benchmarks.</p>
   <div id="test_element" style="overflow:hidden; width: 1px; height:1px;"></div>
 </body>
 </html>

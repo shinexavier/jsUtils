@@ -50,43 +50,40 @@ var adder = add.crockfordCurry();
 var multiplier = multiply.crockfordCurry();
 
 //Finding the sum of 1,2 & 3 with the curried function
-console.log(adder(adder(1)(2))(3));
+//console.log(adder(adder(1)(2))(3));
 //Finding the product of 1,2 & 3 with the curried function
-console.log(multiplier(multiplier(1)(2))(3));
+//console.log(multiplier(multiplier(1)(2))(3));
 
 
-
-//My Currying Implementation using the "Appy-Eval" approach
+//My Currying Implementation using the "Eval-Apply" Approach
 Function.prototype.haskellCurry = function () {
 	"use strict";
 	var slice = Array.prototype.slice,
-		that = this,
-		fn = null,
-		x = 1;
+		that = this;
 	return function () {
-		var	jsApply, jsEval;
-		jsApply = function () {
-			var args = slice.apply(arguments),
-				fn = that(args[0]);
-			x = fn;
-			jsEval.apply(that, args.slice(1));
-		};
+		var	jsEval,
+			jsApply,
+			fn,
+			args = slice.apply(arguments),
+			result = args[0];
 		jsEval = function () {
-			var args = slice.apply(arguments),
-				result = x(args[0]),
-				args2 = [result];
+			args = slice.apply(arguments);
+			fn = that.call(null, result);
+			jsApply.apply(null, args);
+		};
+		jsApply = function () {
+			args = slice.apply(arguments);
+			result = fn.call(null, args[0]);
 			if (args.length > 1) {
-				jsApply.apply(that, args2.concat(args.slice(1)));
-			} else {
-				x = result;
+				jsEval.apply(null, args.slice(1));
 			}
 		};
-		jsApply.apply(that, slice.apply(arguments));
-		return x;
+		jsEval.apply(null, args.slice(1));
+		return result;
 	};
 };
 
 var adder2 = add.haskellCurry(),
 	multiplier2 = multiply.haskellCurry();
-console.log(adder2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14));
-console.log(multiplier2(1, 2, 3, 4, 5, 6));
+//console.log(adder2(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14));
+//console.log(multiplier2(1, 2, 3, 4, 5, 6));
