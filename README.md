@@ -5,6 +5,6 @@ The functions and associated files would be available in their own respective fo
 
 List:
 
-1. Apply-Eval Curry Function
+1. Eval-Apply Curry Function
 
     Please read about this in detail at my blog: https://stoi.wordpress.com/2015/07/22/javascript-currying-an-interpretation/
